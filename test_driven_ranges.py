@@ -31,7 +31,7 @@ def get_continuous_ranges(readings_list):
 
 def get_valid_ranges(sliced_lists):
     for sliced_list in sliced_lists:
-        if not sliced_list or len(sliced_list) == 1:
+        if len(sliced_list) < 2:
             continue
         else:
             yield sliced_list
