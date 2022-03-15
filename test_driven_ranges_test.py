@@ -8,4 +8,5 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertFalse(test_driven_ranges.is_valid_input([]))
 
     def test_get_range(self):
-        self.assertEqual(test_driven_ranges.get_range([4, 5]), "4-5, 2")
+        self.assertEqual(test_driven_ranges.get_continuous_ranges([3, 3, 5, 4, 10, 11, 12]), ['3-5, 4', '10-12, 3'])
+        self.assertEqual(test_driven_ranges.get_continuous_ranges([]), 'INVALID_INPUTS')
