@@ -38,6 +38,7 @@ def get_valid_ranges(sliced_lists):
 
 
 def print_list(sliced_lists, readings_list):
+    print(sliced_lists, readings_list)
     ranges = []
     for found_range in get_valid_ranges(sliced_lists):
         count = 0
