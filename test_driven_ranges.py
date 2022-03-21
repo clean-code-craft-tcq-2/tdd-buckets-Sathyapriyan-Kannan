@@ -43,5 +43,5 @@ def print_list(sliced_lists, readings_list):
         count = 0
         for i in found_range:
             count = count + readings_list.count(i)
-        ranges.append("{0}-{1}, {2}".format(found_range[0], found_range[-1], count))
+        ranges.append(f'{found_range[0]}-{found_range[-1]}, {count}')
     return ranges

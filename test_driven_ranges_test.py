@@ -14,5 +14,4 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertEqual(test_driven_ranges.get_continuous_ranges([3, 4]), ['3-4, 2'])
 
 
-if __name__ == '__main__':
-    unittest.main()
+unittest.main()
