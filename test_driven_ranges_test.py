@@ -13,5 +13,7 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertEqual(test_driven_ranges.get_continuous_ranges([3]), [])
         self.assertEqual(test_driven_ranges.get_continuous_ranges([3, 4]), ['3-4, 2'])
 
+    def test_get_most_frequent_reading(self):
+        self.assertEqual(test_driven_ranges.get_most_frequent_reading([3, 4, 5, 7, 7, 7, 7, 20,21,22], 7))
 
 unittest.main()
