@@ -23,7 +23,6 @@ def get_continuous_ranges(readings_list):
             sliced_lists.append(possible_ranges[start:end])
             start = end + 1
         sliced_lists.append(possible_ranges[start:])
-
         return print_list(sliced_lists, readings_list)
     else:
         return 'INVALID_INPUTS'
@@ -48,4 +47,4 @@ def print_list(sliced_lists, readings_list):
 
 
 def get_most_frequent_reading(readings_list):
-    return None
+    return max(set(readings_list), key=readings_list.count)
