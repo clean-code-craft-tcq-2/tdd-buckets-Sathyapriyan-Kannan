@@ -47,4 +47,7 @@ def print_list(sliced_lists, readings_list):
 
 
 def get_most_frequent_reading(readings_list):
-    return max(set(readings_list), key=readings_list.count)
+    if is_valid_input(readings_list):
+        return max(set(readings_list), key=readings_list.count)
+    else:
+        return 'INVALID_INPUTS'

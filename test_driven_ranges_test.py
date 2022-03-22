@@ -15,5 +15,6 @@ class TestDrivenRangesTest(unittest.TestCase):
 
     def test_get_most_frequent_reading(self):
         self.assertEqual(test_driven_ranges.get_most_frequent_reading([3, 4, 5, 7, 7, 7, 7, 20,21,22]), 7)
+        self.assertEqual(test_driven_ranges.get_most_frequent_reading([]), 'INVALID_INPUTS')
 
 unittest.main()
