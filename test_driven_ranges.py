@@ -45,3 +45,7 @@ def print_list(sliced_lists, readings_list):
             count = count + readings_list.count(i)
         ranges.append(f'{found_range[0]}-{found_range[-1]}, {count}')
     return ranges
+
+
+def get_most_frequent_reading(readings_list):
+    return None
