@@ -28,8 +28,17 @@ class TestDrivenRangesTest(unittest.TestCase):
             test_driven_ranges.convert_a2d_to_amp(1048, test_driven_ranges.get_threshold(12, is_signed=False), 10,
                                                   is_signed=False), 3)
         self.assertEqual(
-            test_driven_ranges.convert_a2d_to_amp(0, test_driven_ranges.get_threshold(12, is_signed=False), 10,
-                                                  is_signed=False), 0)
+            test_driven_ranges.convert_a2d_to_amp(4094, test_driven_ranges.get_threshold(12, is_signed=False), 10,
+                                                  is_signed=False), 10)
+        self.assertEqual(
+            test_driven_ranges.convert_a2d_to_amp(0, test_driven_ranges.get_threshold(10, is_signed=True), 15,
+                                                  is_signed=True), 15)
+        self.assertEqual(
+            test_driven_ranges.convert_a2d_to_amp(1023, test_driven_ranges.get_threshold(10, is_signed=True), 15,
+                                                  is_signed=True), 15)
+        self.assertEqual(
+            test_driven_ranges.convert_a2d_to_amp(550, test_driven_ranges.get_threshold(10, is_signed=True), 15,
+                                                  is_signed=True), 1)
 
     def test_remove_error_readings(self):
         self.assertEqual(test_driven_ranges.remove_error_readings([1000, 1005, 1200, 1494, 4094, 4095], 12),
