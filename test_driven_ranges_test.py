@@ -21,8 +21,8 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertEqual(test_driven_ranges.get_threshold(12), 4095)
 
     def test_convert_a2d_to_amp(self):
-        self.assertEqual(test_driven_ranges.convert_a2d_to_amp(1048, test_driven_ranges.get_threshold(12)), 3)
-        self.assertEqual(test_driven_ranges.convert_a2d_to_amp(0, test_driven_ranges.get_threshold(12)), 0)
+        self.assertEqual(test_driven_ranges.convert_a2d_to_amp(1048, test_driven_ranges.get_threshold(12), 10), 3)
+        self.assertEqual(test_driven_ranges.convert_a2d_to_amp(0, test_driven_ranges.get_threshold(12), 10), 0)
 
     def test_remove_error_readings(self):
         self.assertEqual(test_driven_ranges.remove_error_readings([1000, 1005, 1200, 1494, 4094, 4095],
@@ -30,16 +30,16 @@ class TestDrivenRangesTest(unittest.TestCase):
                          [1000, 1005, 1200, 1494, 4094])
 
     def test_convert_a2d_readings_into_current(self):
-        self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current([1000, 1005, 1200, 1494, 4094, 4095], 12),
+        self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current([1000, 1005, 1200, 1494, 4094, 4095], 12, 10),
                          [2, 2, 3, 4, 10])
-        self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current([1150, 1200, 1225, 1494], 12),
+        self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current([1150, 1200, 1225, 1494], 12, 10),
                          [3, 3, 3, 4])
 
     def test_get_continuous_ranges_from_a2d_sensor(self):
         self.assertEqual(
-            test_driven_ranges.get_continuous_ranges_from_a2d_sensor([1000, 1005, 1200, 1494, 4094, 4095], 12),
+            test_driven_ranges.get_continuous_ranges_from_a2d_sensor([1000, 1005, 1200, 1494, 4094, 4095], 12, 10),
             ['2-4, 4'])
-        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor([], 12), 'INVALID_INPUTS')
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor([], 12, 10), 'INVALID_INPUTS')
 
 
 unittest.main()

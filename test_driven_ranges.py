@@ -53,17 +53,17 @@ def get_most_frequent_reading(readings_list):
         return 'INVALID_INPUTS'
 
 
-def get_continuous_ranges_from_a2d_sensor(readings_list, no_of_bits):
+def get_continuous_ranges_from_a2d_sensor(readings_list, no_of_bits, max_current_in_amp):
     if is_valid_input(readings_list):
-        return get_continuous_ranges(convert_a2d_readings_into_current(readings_list, no_of_bits))
+        return get_continuous_ranges(convert_a2d_readings_into_current(readings_list, no_of_bits, max_current_in_amp))
     else:
         return 'INVALID_INPUTS'
 
 
-def convert_a2d_readings_into_current(readings_list, no_of_bits):
+def convert_a2d_readings_into_current(readings_list, no_of_bits, max_current_in_amp):
     threshold = get_threshold(no_of_bits)
     valid_readings = remove_error_readings(readings_list, threshold)
-    readings_in_amps = [convert_a2d_to_amp(reading, threshold) for reading in valid_readings]
+    readings_in_amps = [convert_a2d_to_amp(reading, threshold, max_current_in_amp) for reading in valid_readings]
     return readings_in_amps
 
 
@@ -72,8 +72,8 @@ def remove_error_readings(a2d_readings_list, threshold):
     return valid_readings
 
 
-def convert_a2d_to_amp(a2d_reading, threshold):
-    return round(10 * (a2d_reading / threshold))
+def convert_a2d_to_amp(a2d_reading, threshold, max_current_in_amp):
+    return round(max_current_in_amp * (a2d_reading / threshold))
 
 
 def get_threshold(bits):
