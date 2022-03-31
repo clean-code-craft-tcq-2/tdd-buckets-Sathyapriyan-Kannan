@@ -51,3 +51,22 @@ def get_most_frequent_reading(readings_list):
         return max(set(readings_list), key=readings_list.count)
     else:
         return 'INVALID_INPUTS'
+
+
+def get_continuous_ranges_from_a2d_sensor(readings_list):
+    return get_continuous_ranges(convert_a2d_readings_into_current(readings_list))
+
+
+def convert_a2d_readings_into_current(readings_list):
+    valid_readings = remove_error_readings(readings_list)
+    readings_in_amps = [convert_a2d_to_amp(reading) for reading in valid_readings]
+    return readings_in_amps
+
+
+def remove_error_readings(a2d_readings_list):
+    valid_readings = [reading for reading in a2d_readings_list if 4094 > reading >= 0]
+    return valid_readings
+
+
+def convert_a2d_to_amp(a2d_reading):
+    return round(10 * a2d_reading / 4094)
