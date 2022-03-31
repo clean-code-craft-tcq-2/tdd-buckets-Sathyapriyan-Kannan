@@ -51,7 +51,7 @@ class TestDrivenRangesTest(unittest.TestCase):
             [1000, 1005, 1200, 1494, 4094, 4095], 12, 10, is_signed=False), [2, 2, 3, 4, 10])
 
         self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current(
-            [1001, 1004, 1201, 1495, 4095, 4095], 10, 15, is_signed=True), [14, 15])
+            [1001, 1006, 1201, 1495, 4094, 4095], 10, 15, is_signed=True), [14, 15])
 
         self.assertEqual(test_driven_ranges.convert_a2d_readings_into_current(
             [1150, 1200, 1225, 1494], 12, 10, is_signed=False), [3, 3, 3, 4])
