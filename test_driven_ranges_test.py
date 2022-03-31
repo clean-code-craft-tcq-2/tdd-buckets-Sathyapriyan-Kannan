@@ -34,5 +34,7 @@ class TestDrivenRangesTest(unittest.TestCase):
     def test_get_continuous_ranges_from_a2d_sensor(self):
         self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor([1000, 1005, 1200, 1494, 4094, 4095]),
                          ['2-4, 4'])
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor([]), 'INVALID_INPUTS')
+
 
 unittest.main()

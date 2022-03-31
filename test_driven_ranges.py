@@ -54,7 +54,10 @@ def get_most_frequent_reading(readings_list):
 
 
 def get_continuous_ranges_from_a2d_sensor(readings_list):
-    return get_continuous_ranges(convert_a2d_readings_into_current(readings_list))
+    if is_valid_input(readings_list):
+        return get_continuous_ranges(convert_a2d_readings_into_current(readings_list))
+    else:
+        return 'INVALID_INPUTS'
 
 
 def convert_a2d_readings_into_current(readings_list):
