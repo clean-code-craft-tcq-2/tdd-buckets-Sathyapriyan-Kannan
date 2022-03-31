@@ -76,7 +76,7 @@ class TestDrivenRangesTest(unittest.TestCase):
                 [0, 44, 100, 150, 511, 600, 750], 10, 15, is_signed=True), ['11-12, 2', '14-15, 2'])
         self.assertEqual(
             test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
-                [0, 44, 100, 150, 511, 600, 750, 1500], 12, 10, is_signed=False), ['0-2, 7'])
+                [0, 43, 101, 151, 511, 601, 751, 1500], 12, 10, is_signed=False), ['0-2, 7'])
 
     def test_get_max_possible_reading(self):
         self.assertEqual(test_driven_ranges.get_max_possible_reading(10), 1023)
