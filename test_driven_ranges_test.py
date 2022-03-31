@@ -57,11 +57,26 @@ class TestDrivenRangesTest(unittest.TestCase):
             [1150, 1200, 1225, 1494], 12, 10, is_signed=False), [3, 3, 3, 4])
 
     def test_get_continuous_ranges_from_a2d_sensor(self):
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+            [], 12, 10, is_signed=False), 'INVALID_INPUTS')
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+            [], 12, 10, is_signed=True), 'INVALID_INPUTS')
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+            [], 10, 15, is_signed=False), 'INVALID_INPUTS')
+        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+            [], 10, 15, is_signed=False), 'INVALID_INPUTS')
         self.assertEqual(
             test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
                 [1000, 1005, 1200, 1494, 4094, 4095], 12, 10, is_signed=False), ['2-4, 4'])
-        self.assertEqual(test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
-            [], 12, 10, is_signed=False), 'INVALID_INPUTS')
+        self.assertEqual(
+            test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+                [0, 12, 55, 70, 1005, 1200, 1494, 2095, 3890, 4094, 4095], 12, 10, is_signed=True), ['3-5, 3', '9-10, 6'])
+        self.assertEqual(
+            test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+                [0, 44, 100, 150, 511, 600, 750], 10, 15, is_signed=True), ['11-12, 2', '14-15, 2'])
+        self.assertEqual(
+            test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
+                [0, 44, 100, 150, 511, 600, 750, 1500], 12, 10, is_signed=False), ['0-2, 7'])
 
     def test_get_max_possible_reading(self):
         self.assertEqual(test_driven_ranges.get_max_possible_reading(10), 1023)
