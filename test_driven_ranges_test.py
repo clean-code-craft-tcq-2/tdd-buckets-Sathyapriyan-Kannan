@@ -70,7 +70,8 @@ class TestDrivenRangesTest(unittest.TestCase):
                 [1000, 1005, 1200, 1494, 4094, 4095], 12, 10, is_signed=False), ['2-4, 4'])
         self.assertEqual(
             test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
-                [0, 12, 55, 70, 1005, 1200, 1494, 2095, 3890, 4094, 4095], 12, 10, is_signed=True), ['3-5, 3', '9-10, 6'])
+                [0, 12, 55, 70, 1005, 1200, 1494, 2095, 3890, 4094, 4095], 12, 10, is_signed=True),
+                ['3-5, 3', '9-10, 6'])
         self.assertEqual(
             test_driven_ranges.get_continuous_ranges_from_a2d_sensor(
                 [0, 44, 100, 150, 511, 600, 750], 10, 15, is_signed=True), ['11-12, 2', '14-15, 2'])

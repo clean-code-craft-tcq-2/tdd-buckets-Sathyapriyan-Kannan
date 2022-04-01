@@ -39,11 +39,16 @@ def get_valid_ranges(sliced_lists):
 def print_list(sliced_lists, readings_list):
     ranges = []
     for found_range in get_valid_ranges(sliced_lists):
-        count = 0
-        for i in found_range:
-            count = count + readings_list.count(i)
+        count = count_occurrence(found_range, readings_list)
         ranges.append(f'{found_range[0]}-{found_range[-1]}, {count}')
     return ranges
+
+
+def count_occurrence(found_range, readings_list):
+    count = 0
+    for i in found_range:
+        count = count + readings_list.count(i)
+    return count
 
 
 def get_most_frequent_reading(readings_list):
@@ -64,7 +69,8 @@ def get_continuous_ranges_from_a2d_sensor(readings_list, no_of_bits, max_current
 def convert_a2d_readings_into_current(readings_list, no_of_bits, max_current_in_amp, is_signed):
     threshold = get_threshold(no_of_bits, is_signed)
     valid_readings = remove_error_readings(readings_list, no_of_bits)
-    readings_in_amps = [convert_a2d_to_amp(reading, threshold, max_current_in_amp, is_signed) for reading in valid_readings]
+    readings_in_amps = [convert_a2d_to_amp(reading, threshold, max_current_in_amp, is_signed) for reading in
+                        valid_readings]
     return readings_in_amps
 
 
@@ -79,14 +85,10 @@ def remove_error_readings(a2d_readings_list, no_of_bits):
 
 
 def convert_a2d_to_amp(a2d_reading, threshold, max_current_in_amp, is_signed):
-    if is_signed:
-        return abs(round(max_current_in_amp * ((a2d_reading - threshold) / threshold)))
-    else:
-        return abs(round(max_current_in_amp * (a2d_reading / threshold)))
+    delta = (a2d_reading - threshold) if is_signed else a2d_reading
+    return abs(round(max_current_in_amp * (delta / threshold)))
 
 
 def get_threshold(no_of_bits, is_signed):
-    if is_signed:
-        return (pow(2, no_of_bits) / 2) - 1
-    else:
-        return pow(2, no_of_bits) - 1
+    max_possible_range = (pow(2, no_of_bits) / 2) - 1 if is_signed else pow(2, no_of_bits) - 1
+    return max_possible_range
